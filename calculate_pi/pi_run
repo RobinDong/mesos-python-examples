@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+MESOS_BUILD_DIR=~/build/
+
+DISTRIBUTE=`echo ${MESOS_BUILD_DIR}/3rdparty/distribute-*/`
+
+PROTOBUF=`echo ${MESOS_BUILD_DIR}/3rdparty/libprocess/3rdparty/protobuf-*/python/`
+
+MESOS_EGGS=$(find ${MESOS_BUILD_DIR}/src/python/dist -name "*.egg" | tr "\\n" ":")
+
+
+PYTHONPATH="${DISTRIBUTE}:${PROTOBUF}:${MESOS_EGGS}" \
+python `pwd`/pi_executor.py
